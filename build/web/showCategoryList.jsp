@@ -13,22 +13,41 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Category List</h1>
+        <h1>Category Tree List</h1>
+        <a href="AddCategoryGETServlet">Create Category</a>
         <ul>
             <c:forEach items="${mainCategory}" var="mainCategory">
                 <li>
                     ${mainCategory.categoryName}
-                    <c:if test="${not empty mainCategory.categoryCollection}">
-                        <ul>
-                            <c:forEach items="${mainCategory.categoryCollection}" var="subCategory">
-                                <li>
-                                    ${subCategory.categoryName}
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </c:if>
+                    <ul>
+                        <c:forEach items="${mainCategory.categoryCollection}" var="subCategory">
+                            <li>
+                                ${subCategory.categoryName}
+                            </li>
+                        </c:forEach>
+                    </ul>
                 </li>
             </c:forEach>
         </ul>
+
+        <h3>All Categories</h3>
+        <table border="1" cellpadding="10px">
+            <thead>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Parent ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${allCategory}" var="cat">
+                    <tr>
+                        <td>${cat.categoryID}</td>
+                        <td>${cat.categoryName}</td>
+                        <td>${cat.parentID.categoryName}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </body>
 </html>

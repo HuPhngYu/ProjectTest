@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/NATSAMA/Documents/NetBeansProjects/ProjectTest/src/java/entities/Product.java</file>
-            <file>file:/C:/Users/NATSAMA/Documents/NetBeansProjects/ProjectTest/src/java/controllers/ShowProductDetailServlet.java</file>
-            <file>file:/C:/Users/NATSAMA/Documents/NetBeansProjects/ProjectTest/web/productDetail.jsp</file>
-            <file>file:/C:/Users/NATSAMA/Documents/NetBeansProjects/ProjectTest/src/java/entities/RingSize.java</file>
+            <file>file:/C:/Users/NATSAMA/Documents/NetBeansProjects/ProjectTest/src/java/entities/Category.java</file>
+            <file>file:/C:/Users/NATSAMA/Documents/NetBeansProjects/ProjectTest/web/showCategoryList.jsp</file>
+            <file>file:/C:/Users/NATSAMA/Documents/NetBeansProjects/ProjectTest/web/createCategory.jsp</file>
+            <file>file:/C:/Users/NATSAMA/Documents/NetBeansProjects/ProjectTest/src/java/controllers/ShowCategoryServlet.java</file>
+            <file>file:/C:/Users/NATSAMA/Documents/NetBeansProjects/ProjectTest/src/java/controllers/AddCategoryServlet.java</file>
         </group>
     </open-files>
 </project-private>

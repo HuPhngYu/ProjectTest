@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package controllers;
 
 import beans.CategoryFacadeLocal;
@@ -12,8 +18,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ShowCategoryServlet", urlPatterns = {"/ShowCategoryServlet"})
-public class ShowCategoryServlet extends HttpServlet {
+@WebServlet(name = "AddCategoryGETServlet", urlPatterns = {"/AddCategoryGETServlet"})
+public class AddCategoryGETServlet extends HttpServlet {
     @EJB
     private CategoryFacadeLocal categoryFacade;
 
@@ -21,11 +27,9 @@ public class ShowCategoryServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            List<Category> allCategory = categoryFacade.findAll();
             List<Category> mainCategory = categoryFacade.findMainCategory();
             request.setAttribute("mainCategory", mainCategory);
-            request.setAttribute("allCategory", allCategory);
-            request.getRequestDispatcher("showCategoryList.jsp").forward(request, response);
+            request.getRequestDispatcher("createCategory.jsp").forward(request, response);
         }
     }
 

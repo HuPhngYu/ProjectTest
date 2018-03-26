@@ -9,8 +9,12 @@ package entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -41,8 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "CategoryID", nullable = false)
     private Integer categoryID;
     @Basic(optional = false)
@@ -55,7 +59,7 @@ public class Category implements Serializable {
         @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", nullable = false)})
     @ManyToMany
     private Collection<Product> productCollection;
-    @OneToMany(mappedBy = "parentID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parentID", fetch = FetchType.LAZY, orphanRemoval = true)
     private Collection<Category> categoryCollection;
     @JoinColumn(name = "ParentID", referencedColumnName = "CategoryID")
     @ManyToOne
@@ -68,9 +72,9 @@ public class Category implements Serializable {
         this.categoryID = categoryID;
     }
 
-    public Category(Integer categoryID, String categoryName) {
-        this.categoryID = categoryID;
+    public Category(String categoryName, Category parentID) {
         this.categoryName = categoryName;
+        this.parentID = parentID;
     }
 
     public Integer getCategoryID() {
@@ -113,6 +117,19 @@ public class Category implements Serializable {
 
     public void setParentID(Category parentID) {
         this.parentID = parentID;
+    }
+    
+    // Thêm vào để xử lý quan hệ One To Many
+    public void addChildToParent(Category child) {
+        child.setParentID(this);
+        this.categoryCollection.add(child);
+    }
+    
+    public void removeChildFromParent(Category child) {
+        this.categoryCollection.remove(child);
+        if (child != null) {
+            child.setParentID(null);
+        }
     }
 
     @Override
